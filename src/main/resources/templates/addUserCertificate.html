@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/style.css}" rel="stylesheet" />
+ <link th:rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+</head>  
+<body>  
+ <form  th:action="@{/addUserCertificate}" method="post">
+  <label for="user_id">User:</label>
+  <select name="user_id" id="user_id">
+    <option value="">-- Select a user --</option>
+    <th:block th:each="user : ${users}">
+      <option th:value="${user.id}" th:text="${user.name}"></option>
+    </th:block>
+  </select>
+  <label for="certificate_id">Certificate:</label>
+  <select name="certificate_id" id="certificate_id">
+    <option value="">-- Select a certificate --</option>
+    <th:block th:each="certificate : ${certificates}">
+      <option th:value="${certificate.id}" th:text="${certificate.name}"></option>
+    </th:block>
+  </select>
+  
+  <button type="submit" class="btn btn-success" style="
+    width: auto;">Add User Certificate</button>
+</form>
+<script type="text/javascript" th:src="@{/test.js}"></script>
+</body>  
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>  
+<html xmlns:th="http://www.thymeleaf.org">
+<head>  
+    <meta charset="UTF-8">  
+    <title>Edit User</title>  
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+    <link th:href="@{/style.css}" rel="stylesheet" /> 
+</head>  
+<body>  
+
+ <table>
+            <tr>
+                <td>Tên Thành Viên</td>
+                <td>
+                    <select >
+                         <option value=""> Trần Sang</option>
+                         <option  th:each="country : ${listuser}"
+                            th:value="${country.id}"
+                            th:utext="${country.id}+'---'+${country.name}"
+                            ></option>
+                  </select>
+                </td>
+            </tr>
+        </table>
+<script type="text/javascript" th:src="@{/test.js}"></script>
+</body>  
+</html>

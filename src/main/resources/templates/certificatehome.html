@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/style.css}" rel="stylesheet" />
+ <link th:rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+<head>
+	<meta charset="UTF-8">
+	<title>Home Page</title>
+</head>
+
+<body>
+	<h2>Danh Sách Chứng Chỉ</h2> <a th:href="@{/certificate/register}" class="btn btn-primary" style="width: 30%;">Thêm</a>
+	<table border="1" class="table">
+		<thead>
+			<tr>
+				<th>ID Chứng Chỉ </th>
+				<th>Tên Chứng CHỉ </th>
+				<th> </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="listc : ${listc}">
+				<td th:text="${listc.id}"></td>
+				<td th:text="${listc.name}"></td>
+				<td ><a th:href="@{'/certificate/delete/' + ${listc.id}}" class="btn btn-danger" style="width: auto;">Delete</a><a  <a th:href="@{'/certificate/update/' + ${listc.id}}" style="width: auto;"  class="btn btn-success">Update</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
