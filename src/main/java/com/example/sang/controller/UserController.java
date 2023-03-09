@@ -39,7 +39,6 @@ public class UserController {
 		boolean kiemtra = false;
 
 		UserDTO userrequest = userDTO;
-
 		List<User> listuserRequestData = userService.getUsers();
 		for (User users : listuserRequestData) {
 			if (userrequest.getName().equals(users.getName())) {
