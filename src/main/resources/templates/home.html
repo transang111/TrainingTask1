@@ -18,7 +18,6 @@
 				<th>Họ Và Tên </th>
 				<th> Địa Chỉ </th>
 				<th> Email </th>
-				<th>Chứng chỉ</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -28,7 +27,6 @@
 				<td th:text="${list.name}"></td>
 				<td th:text="${list.address}"></td>
 				<td th:text="${list.email}"></td>
-				<td><div th:each="item : ${list.userCertificate}"><div th:text="${item.name}"></div> </div></td>
 				<td ><a th:href="@{'/delete/' + ${list.id}}" class="btn btn-danger" style="width: auto;">Delete</a><a  <a th:href="@{'/updateuser/'+${list.id}}" style="width: auto;"  class="btn btn-success">Update</a></td>
 			</tr>
 		</tbody>

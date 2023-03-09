@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,12 +36,20 @@ public class CertificateController {
 	}
 
 	@PostMapping("/save")
-	public String CreateCertificate(CertificateDTO certificateDTO, ModelMap modelMap) {
+	public String CreateCertificate(@ModelAttribute("certificateDTO") CertificateDTO certificateDTO, ModelMap modelMap) {
 		boolean kt = certificateServiceIpm.createCertificate(certificateDTO);
-		if (kt) {
-			return "redirect:home";
+		
+		List<Certificate> CertificatedtoRequestData=certificateServiceIpm.getCertificates();
+		for (Certificate certificatedata : CertificatedtoRequestData) {
+			if(certificateDTO.getName().equals(certificatedata.getName())) {
+				modelMap.addAttribute("mesageCertificate", "Chứng chỉ đã tôn tai");
+				return "redirect:register";
+			}
 		}
-		return "RegisterC";
+		if (kt) {
+			return "redirect:certificatehome";
+		}
+		return "register";
 	}
 	@GetMapping("/delete/{id}")
 	public String DeleteCertificateService(@PathVariable int id, ModelMap modelMap) {
@@ -58,7 +67,7 @@ public class CertificateController {
 		return "updatecerficate";
 	}
 	@PostMapping("/updatecertificate/{id}")
-	public String updateCertificate(CertificateDTO certificateDTO, ModelMap modelMap, @PathVariable int id) {
+	public String updateCertificate(@ModelAttribute("certificateDTO") CertificateDTO certificateDTO, ModelMap modelMap, @PathVariable int id) {
 		 certificateServiceIpm.updateCertificate(certificateDTO,id);
 		 List<Certificate> listall= certificateServiceIpm.getCertificates();
 		 modelMap.addAttribute("listc", listall);

@@ -7,13 +7,14 @@
     <link th:href="@{/style.css}" rel="stylesheet" /> 
 </head>  
 <body>  
-	<h1>Thay Đổi Thông Tin Cá Nhân</h1>
+	<h1>Thêm Chứng Chỉ</h1>
 <form th:action="@{/certificate/save}" th:object="${certificateDTO}" method="post">
     <label for="name">Tên Chứng Chỉ</label>
+    <p th:text="${mesageCertificate}" style="color: red;"></p>
     <input type="text" th:field="*{name}" name="name" id="name" placeholder="Name">
-    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <span th:text="${mesageCertificate}" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
    	<button type="submit" class="btn btn-primary btn-block mt-3">Save</button>  
 </form>
-<script type="text/javascript" th:src="@{/test.js}"></script>
+<script type="text/javascript" th:src="@{../test.js}"></script>
 </body>  
 </html>

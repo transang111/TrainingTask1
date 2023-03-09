@@ -8,18 +8,21 @@
 </head>  
 <body>  
 	<h1>Thay Đổi Thông Tin Cá Nhân</h1>
-<form th:action="@{/save}" th:object="${register}" method="post">
+<form th:action="@{/save}" th:object="${userDTO}" method="post">
     <label for="name">Name</label>
-    <input type="text" th:field="*{name}" name="name" id="name" placeholder="Name">
-    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <input type="text"  name="name" id="name"  placeholder="Name" th:field="*{name}">
+    <p class="form-mesage" style="color:red"></p>
+    <p th:if="${#fields.hasErrors('name')}" class="form-mesage1" th:errors="*{name}" style="color:red" ></p> <br>
     <label for="address">Dia Chi</label>
-    <input type="text" th:field="*{address}" name="address" id="address" placeholder="Dia Chi">
-    <span  th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+    <input type="text"  name="address" id="address"  placeholder="Dia Chi" th:field="*{address}">
+    <p class="form-mesagea" style="color:red"></p>
+    <label  th:if="${#fields.hasErrors('address')}" class="form-mesagea1" th:errors="*{address}" style="color:red" ></label><br>
     <label for="email">Email</label>
-    <input type="text" th:field="*{email}" name="email" id="email" placeholder="Email">
-    <span  th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-   	<button type="submit" class="btn btn-primary btn-block mt-3">Save</button>  
+    <input type="text"  name="email" id="email"  placeholder="Email" th:field="*{email}">
+     <p class="form-mesaged" style="color:red"></p>
+    <label  th:if="${#fields.hasErrors('email')}" class="form-mesaged1"  th:errors="*{email}" style="color:red" ></label><br>
+   	<button type="submit" class="btn btn-primary btn-block mt-3" th:disabled="${false}">Save</button>  
 </form>
-<script type="text/javascript" th:src="@{/test.js}"></script>
+ <script type="text/javascript" th:src="@{../test.js}"></script>
 </body>  
 </html>

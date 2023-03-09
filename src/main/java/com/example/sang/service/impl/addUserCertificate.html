@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/style.css}" rel="stylesheet" />
+<link th:rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}" />
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+	<form th:action="@{/addUserCertificate}" method="post">
+		<label for="user_id">User:</label>
+		<select name="user_id" id="user_id" required>
+			<option value="">--Chọn Thành Viên--</option>
+			<th:block th:each="user : ${users}">
+				<option th:value="${user.id}" th:text="${user.name}"></option>
+			</th:block>
+		</select>
+		<label for="certificate_id">Certificate:</label>
+		<select name="certificate_id" id="certificate_id" required>
+			<option value="">--Chọn Chứng Chỉ--</option>
+			<th:block th:each="certificate : ${certificates}">
+				<option th:value="${certificate.id}" th:text="${certificate.name}"></option>
+			</th:block>
+		</select>
+		<button type="submit" class="btn btn-success" style="
+    width: auto;">Add User Certificate</button>
+		<table border="1" class="table">
+			<thead>
+				<tr>
+					<th>ID Thành Viên </th>
+					<th>Họ Và Tên </th>
+					<th> Địa Chỉ </th>
+					<th> Email </th>
+					<th>Chứng chỉ</th>
+					<th>Tổng Chứng chỉ</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="list : ${users}">
+					<td th:text="${list.id}"></td>
+					<td th:text="${list.name}"></td>
+					<td th:text="${list.address}"></td>
+					<td th:text="${list.email}"></td>
+					<td>
+						<div th:each="item : ${list.userCertificate}">
+							<div th:text="${item.name}"></div>
+						</div>
+					</td>
+					<td>
+						<div >
+							<div th:text="${list.userCertificate.size()}"></div>
+						</div>
+					</td>
+					<td><a th:href="@{'/delete/' + ${list.id}}" class="btn btn-danger" style="width: auto;">Delete</a><a
+							<a th:href="@{'/updateuser/'+${list.id}}" style="width: auto;"
+							class="btn btn-success">Update</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</form>
+	<script type="text/javascript" th:src="@{/test.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/style.css}" rel="stylesheet" />
+<link th:rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}" />
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js}"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+	<form th:action="@{/addUserCertificate}" method="post">
+		<table border="1" class="table">
+			<thead>
+				<tr>
+					<th>ID Thành Viên </th>
+					<th>Họ Và Tên </th>
+					<!--<th>Chứng chỉ</th>-->
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="list : ${UserCertificateDTO}">
+					<td th:text="${list.id}"></td>
+					<td th:text="${list.name1}"></td>
+					<td th:text="${list.name}"></td>
+					<!--<td th:text="${list.certificate_id}"></td>-->
+					<!--<td th:text="${list.certificate_name}"></td>-->
+					<!--<td><a th:href="@{'/delete/' + ${list.id}}" class="btn btn-danger" style="width: auto;">Delete</a><a
+							<a th:href="@{'/updateuser/'+${list.id}}" style="width: auto;"
+							class="btn btn-success">Update</a></td>-->
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<script type="text/javascript" th:src="@{/test.js}"></script>
+</body>
+
+</html>
